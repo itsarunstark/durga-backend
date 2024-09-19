@@ -1,7 +1,7 @@
 from flask.app import Flask
 from flask.blueprints import Blueprint
 from flask.json import jsonify
-from flask import request, url_for
+from flask import request, url_for, abort
 import uuid
 from .tools import encrypt
 from . import database
@@ -51,7 +51,7 @@ def signup():
             "https://i.imgur.com/NUyttbnb.jpg",
         )
     )
-    
+
     base.commit()
 
     return jsonify(
