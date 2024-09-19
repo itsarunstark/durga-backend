@@ -6,16 +6,20 @@ import uuid
 import hashlib
 from . import database
 import datetime
+import secrets
 from queue import Queue
 from .login import login_blueprint
 from .signup import signup_blueprint
 from .home import homepage_blueprint
+from .logout import logout_blueprint
 from .tools import encrypt
 
 
 app = Flask(__name__)
 app.config['DATABASE'] = 'manaswini.db'
 database.init_app(app=app)
+app.secret_key = secrets.token_hex(16)
+print("Secret is set")
 
 
 
@@ -62,6 +66,7 @@ def wishwelcome():
 app.register_blueprint(login_blueprint)
 app.register_blueprint(signup_blueprint)
 app.register_blueprint(homepage_blueprint)
+app.register_blueprint(logout_blueprint)
 
 if __name__ == '__main__':
     app.run(debug=True)

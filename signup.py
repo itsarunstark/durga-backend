@@ -51,7 +51,7 @@ def signup():
             "https://i.imgur.com/NUyttbnb.jpg",
         )
     )
-
+    
     base.commit()
 
     return jsonify(

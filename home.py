@@ -5,7 +5,6 @@ import uuid
 from . import database
 homepage_blueprint = Blueprint('home', __name__)
 
-
 @homepage_blueprint.route('/')
 def homepage():
     base = database.get_db()
@@ -21,8 +20,9 @@ def homepage():
     
     SESSION_QUERY = "SELECT s1.userId, s1.created, s1.expiry, u1.username \
         FROM sessionCookies s1 INNER JOIN user u1 \
-        ON u1.userId = s1.userId"
-    cursor.execute(SESSION_QUERY)
+        ON u1.userId = s1.userId WHERE s1.cookieId = ?"
+    print(sessionId)
+    cursor.execute(SESSION_QUERY, (sessionId,))
     sessionInfo = cursor.fetchone()
     if not sessionInfo:
         response = make_response(
