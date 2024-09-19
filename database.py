@@ -2,7 +2,7 @@ import sqlite3
 from flask import current_app, g
 from flask.app import Flask
 import click
-from typing_extensions import Union
+from typing import Union
 
 class Resources:
     created_schema = './schema.sql'
